@@ -16,10 +16,10 @@ def enumerateEuler(start:str, G:nx.Graph) -> list[list[str]]:
     """
     AEuler = list()
     circuits = list()
-    enumerateEulerSub(start, start, AEuler, G, circuits)
+    _enumerateEulerSub(start, start, AEuler, G, circuits)
     return circuits
 
-def enumerateEulerSub(currentNode:str, startNode:str, AEuler:list[tuple[str,str]], G:nx.Graph, circuits:list[list[str]]):
+def _enumerateEulerSub(currentNode:str, startNode:str, AEuler:list[tuple[str,str]], G:nx.Graph, circuits:list[list[str]]):
     """
     Euler閉路を列挙する再帰メソッド
 
@@ -45,7 +45,7 @@ def enumerateEulerSub(currentNode:str, startNode:str, AEuler:list[tuple[str,str]
             A = list(AEuler)
             A.append(edge)
             (f, t) = edge
-            enumerateEulerSub(t, startNode, A, G, circuits)
+            _enumerateEulerSub(t, startNode, A, G, circuits)
 
 def enumerateHamilton(start:str, G:nx.Graph) -> list[list[str]]:
     """
@@ -63,10 +63,10 @@ def enumerateHamilton(start:str, G:nx.Graph) -> list[list[str]]:
     VHamilton = list()
     VHamilton.append(start)
     circuits = list()
-    enumerateHamiltonSub(start, start, VHamilton, G, circuits)
+    _enumerateHamiltonSub(start, start, VHamilton, G, circuits)
     return circuits
 
-def enumerateHamiltonSub(currentNode:str, startNode:str, VHamilton:list[str], G:nx.Graph, circuits:list[list[str]]):
+def _enumerateHamiltonSub(currentNode:str, startNode:str, VHamilton:list[str], G:nx.Graph, circuits:list[list[str]]):
     """
     Hamilton閉路を列挙する再帰メソッド
 
@@ -90,4 +90,4 @@ def enumerateHamiltonSub(currentNode:str, startNode:str, VHamilton:list[str], G:
             if t not in VHamilton:
                 E = list(VHamilton)
                 E.append(t)
-                enumerateHamiltonSub(t, startNode, E,G, circuits)
+                _enumerateHamiltonSub(t, startNode, E,G, circuits)
