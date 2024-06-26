@@ -92,11 +92,11 @@ def drawGraph(
     edge_width = 5.0
     node_color = "c"
     arrowsize = 50
-    plt.figure(figsize=(10, 10), facecolor="white")
+    fig,ax = plt.subplots(figsize=(10, 10), facecolor="white")
 
     # 頂点を描く
-    nx.draw_networkx_nodes(G, nodeLocations, node_size=node_size, node_color=node_color)
-    nx.draw_networkx_labels(G, nodeLocations, font_size=font_size)
+    nx.draw_networkx_nodes(G, nodeLocations, node_size=node_size, node_color=node_color,ax=ax)
+    nx.draw_networkx_labels(G, nodeLocations, font_size=font_size,ax=ax)
     nx.draw_networkx_edges(
         G,
         nodeLocations,
@@ -104,12 +104,13 @@ def drawGraph(
         arrows=True,
         arrowsize=arrowsize,
         node_size=node_size,
+        ax=ax
     )
     # 辺を描く
     nx.draw_networkx_edge_labels(
-        G, nodeLocations, edge_labels=edgeLabels, font_size=font_size
+        G, nodeLocations, edge_labels=edgeLabels, font_size=font_size,ax=ax
     )
-    plt.axis("off")
+    ax.axis("off")
     plt.show()
 
 

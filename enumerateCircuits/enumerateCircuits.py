@@ -201,15 +201,15 @@ def drawGraph(
     """
     Drawing graphs
     """
-    plt.figure(facecolor="white")
+    fig,ax=plt.subplots(facecolor="white")
 
-    nx.draw_networkx_nodes(G, nodeLocations, node_size=node_size, node_color=node_color)
-    nx.draw_networkx_labels(G, nodeLocations, font_size=font_size)
+    nx.draw_networkx_nodes(G, nodeLocations, node_size=node_size, node_color=node_color,ax=ax)
+    nx.draw_networkx_labels(G, nodeLocations, font_size=font_size,ax=ax)
     nx.draw_networkx_edges(
-        G, nodeLocations, width=edge_width, arrows=False, node_size=node_size
+        G, nodeLocations, width=edge_width, arrows=False, node_size=node_size,ax=ax
     )
     nx.draw_networkx_edge_labels(
-        G, nodeLocations, edge_labels=edgeLabels, font_size=font_size
+        G, nodeLocations, edge_labels=edgeLabels, font_size=font_size,ax=ax
     )
-    plt.axis("off")
+    ax.axis("off")
     plt.show()
