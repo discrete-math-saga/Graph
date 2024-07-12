@@ -7,29 +7,6 @@ class Point(NamedTuple):
     x: float
     y: float
 
-
-def position2xy(
-    nodeLocations: dict[str, Point]
-) -> tuple[dict[str, float], dict[str, float]]:
-    """
-    位置の一覧から、X座標とY座標の一覧を生成
-
-    Parameters
-    ---
-    nodeLocations 頂点名->座標の一覧
-
-    Returns
-    ---
-    (xp,yp) 頂点名->X座標の一覧、頂点名->Y座標の一覧
-    """
-    xp:dict[str,float] = dict()
-    yp:dict[str,float] = dict()
-    for v in nodeLocations.keys():
-        xp[v] = nodeLocations[v].x
-        yp[v] = nodeLocations[v].y
-    return xp, yp
-
-
 def defineGraph() -> tuple[nx.DiGraph, dict[str, Point], dict[tuple[str, str], str]]:
     """
     グラフの定義
@@ -69,14 +46,8 @@ def defineGraph() -> tuple[nx.DiGraph, dict[str, Point], dict[tuple[str, str], s
     G = nx.DiGraph()  # 有向グラフを定義
     G.add_nodes_from(nodeList)  # 頂点を定義
     G.add_edges_from(edgeList)  # 辺を定義
-    xp:dict[str,float]
-    yp:dict[str,float]    
-    xp, yp = position2xy(nodeLocations)
-    nx.set_node_attributes(G, xp, "x")  # 頂点のX座標
-    nx.set_node_attributes(G, yp, "y")  # 頂点のY座標
     nx.set_edge_attributes(G, edgeLabels, "edge")  # 辺の定義
     return G, nodeLocations, edgeLabels
-
 
 def drawGraph(
     G: nx.DiGraph,
