@@ -55,4 +55,5 @@ fig,ax=plt.subplots()
 nx.draw(G, pos=nodeLocations, with_labels=True, node_size=1000, node_color="c", ax=ax)
 plt.show()
 ```
-このコードは[SimplestDiGraphy.py](./DiGraphSample.py)にあります。
+このコードは[SimplestDiGraph.py](./SimplestDiGraph.py)にあります。`nx.draw()`には、作図のためのパラメータがたくさんあります。詳しくは、[公式HP](https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html)を参照してください。
+また、辺にラベルを付けるには、`nx.draw_networkx_edge_labels()`を使います。
